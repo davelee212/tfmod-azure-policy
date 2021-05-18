@@ -52,9 +52,9 @@ resource "azurerm_policy_definition" "sixdegrees-vm-tag-lmexclude-asrtest-defini
 
 
 resource "azurerm_policy_assignment" "sixdegrees-vm-tag-lmexclude-asrtest-assignment" {
-  name                 = "sixdegrees-vm-tag-lmexclude-asrtest-assignment"
+  name                 = "sixdegrees-vm-tag-lmexclude"
   display_name         = "Assignment of lmexclude tag policy"
   description          = "Assignment of lmexclude tag policy - test description"
-  policy_definition_id = "${azurerm_policy_definition.sixdegrees-vm-tag-lmexclude-asrtest-definition.id}"
-  scope                = "${data.azurerm_subscription.current.id}"
+  policy_definition_id = azurerm_policy_definition.sixdegrees-vm-tag-lmexclude-asrtest-definition.id
+  scope                = data.azurerm_management_group.target_management_group.id
 }
