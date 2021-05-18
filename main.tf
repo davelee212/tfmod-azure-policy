@@ -8,6 +8,6 @@ terraform {
   }
 }
 
-data "azurerm_management_group" "target_management_group" {
-  name = var.management_group_policy
+data "azurerm_management_group" "target_management_group_name" {
+  name = var.target_management_group_name
 }
