@@ -23,27 +23,29 @@ resource "azurerm_policy_definition" "sixdegrees-vm-tag-lmexclude-asrtest-defini
   METADATA
 
   policy_rule = <<POLICY_RULE
-    "if": {
-        "allOf": [
-            {
-                "field": "type",
-                "equals": "Microsoft.Compute/virtualMachines"
-            },
-            
-            {
-                "field": "name",
-                "like": "*-test"
-            }
-        ]
-    },
-    "then": {
-        "effect": "append",
-        "details": [
-        {
-            "field": "tags[lmexclude]",
-            "value": "true"
-        }
-        ]
+    {
+      "if": {
+          "allOf": [
+              {
+                  "field": "type",
+                  "equals": "Microsoft.Compute/virtualMachines"
+              },
+              
+              {
+                  "field": "name",
+                  "like": "*-test"
+              }
+          ]
+      },
+      "then": {
+          "effect": "append",
+          "details": [
+          {
+              "field": "tags[lmexclude]",
+              "value": "true"
+          }
+          ]
+      }
     }
   POLICY_RULE
 }
