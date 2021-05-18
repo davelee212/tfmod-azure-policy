@@ -1,10 +1,4 @@
-variable "location" {
-  type        = string
-  description = "Azure location of resource group"
-  default     = "westus2"
-}
-
-variable "resource_group_name" {
+variable "management_group_policy" {
     type = string
-    description = "Name of the Resource Group to deploy"
+    description = "Name of the management group to create Azure Policy Defintions"
 }
