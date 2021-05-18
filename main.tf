@@ -9,7 +9,7 @@ terraform {
 }
 
 
-resource "azurerm_policy_definition" "sixdegrees-vm-tag-lmexclude-asrtest" {
+resource "azurerm_policy_definition" "sixdegrees-vm-tag-lmexclude-asrtest-definition" {
   name         = "sixdegrees-vm-tag-lmexclude-asrtest"
   policy_type  = "Custom"
   mode         = "All"
@@ -46,4 +46,13 @@ resource "azurerm_policy_definition" "sixdegrees-vm-tag-lmexclude-asrtest" {
         ]
     }
   POLICY_RULE
+}
+
+
+resource "azurerm_policy_assignment" "sixdegrees-vm-tag-lmexclude-asrtest-assignment" {
+  name                 = "sixdegrees-vm-tag-lmexclude-asrtest-assignment"
+  display_name         = "Assignment of lmexclude tag policy"
+  description          = "Assignment of lmexclude tag policy - test description"
+  policy_definition_id = "${azurerm_policy_definition.sixdegrees-vm-tag-lmexclude-asrtest-definition.id}"
+  scope                = "${data.azurerm_subscription.current.id}"
 }
